@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$ROOT_DIR/lib/common.sh"
+
+main() {
+  require_command git
+
+  if [[ "$#" -ne 1 ]]; then
+    usage_error "git latest <branch>"
+  fi
+
+  local target_branch="$1"
+
+  git switch "$target_branch" >/dev/null || die "failed to switch to '$target_branch'"
+  git pull --ff-only >/dev/null || die "failed to update '$target_branch' from remote"
+}
+
+main "$@"
+

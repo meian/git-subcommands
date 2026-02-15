@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$ROOT_DIR/lib/common.sh"
+
+main() {
+  require_command git
+
+  if [[ "$#" -gt 1 ]]; then
+    usage_error "git last [-n]"
+  fi
+
+  local offset
+  if ! offset="$(parse_last_offset "${1:-}")"; then
+    usage_error "git last [-n]"
+  fi
+
+  git show --format= --patch "HEAD~$offset" || die "failed to show commit diff"
+}
+
+main "$@"
+

@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$ROOT_DIR/lib/common.sh"
+
+main() {
+  require_command git
+
+  local clean=false
+  if [[ "$#" -gt 1 ]]; then
+    usage_error "git merged [-clean]"
+  fi
+  if [[ "$#" -eq 1 ]]; then
+    if [[ "$1" == "-clean" ]]; then
+      clean=true
+    else
+      usage_error "git merged [-clean]"
+    fi
+  fi
+
+  local merged
+  merged="$(git_list_merged_branches)"
+
+  if [[ -n "$merged" ]]; then
+    printf '%s\n' "$merged"
+  fi
+
+  if [[ "$clean" == true && -n "$merged" ]]; then
+    while IFS= read -r branch; do
+      [[ -z "$branch" ]] && continue
+      git branch -d "$branch" >/dev/null || die "failed to delete merged branch '$branch'"
+    done <<< "$merged"
+  fi
+}
+
+main "$@"
+
