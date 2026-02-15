@@ -17,7 +17,7 @@ main() {
 
   git -C "$repo" checkout -q feature
 
-  run_cmd "\"$REPO_ROOT/git-latest\" main" "$repo"
+  run_cmd "\"$REPO_ROOT/src/git-latest\" main" "$repo"
   assert_eq "0" "$CMD_EXIT_CODE" "git-latest should succeed"
 
   local head_branch
@@ -38,4 +38,3 @@ main() {
 }
 
 main "$@"
-

@@ -18,11 +18,11 @@ main() {
   git -C "$repo" commit -q -m "alive change"
   git -C "$repo" checkout -q main
 
-  run_cmd "\"$REPO_ROOT/git-merged\"" "$repo"
+  run_cmd "\"$REPO_ROOT/src/git-merged\"" "$repo"
   assert_eq "0" "$CMD_EXIT_CODE" "git-merged should succeed"
   assert_contains "$CMD_STDOUT" "feature/merged" "merged branch should be listed"
 
-  run_cmd "\"$REPO_ROOT/git-merged\" -clean" "$repo"
+  run_cmd "\"$REPO_ROOT/src/git-merged\" -clean" "$repo"
   assert_eq "0" "$CMD_EXIT_CODE" "git-merged -clean should succeed"
   if git -C "$repo" show-ref --verify --quiet refs/heads/feature/merged; then
     fail "feature/merged should be deleted by -clean"
