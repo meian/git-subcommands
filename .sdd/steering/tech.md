@@ -26,7 +26,7 @@ Git の外部サブコマンド機構（`git-<name>` という実行可能ファ
 - タスク分解：`/sdd-tasks`
 - 実装：`/sdd-implement`
 - テスト：`bash test/run.sh`
-- 実行権限付与：`chmod +x git-latest git-local-branch git-merged git-last`
+- 実行権限付与：`chmod +x src/git-latest src/git-local-branch src/git-merged src/git-last`
 
 ## 環境変数
 - 現時点で明示された必須環境変数はありません。
