@@ -19,13 +19,13 @@ head -n 1
 EOF
   chmod +x "$fakebin/fzf"
 
-  run_cmd "PATH=\"$fakebin:$PATH\" \"$REPO_ROOT/git-local-branch\" feature" "$repo"
+  run_cmd "PATH=\"$fakebin:$PATH\" \"$REPO_ROOT/src/git-local-branch\" feature" "$repo"
   assert_eq "0" "$CMD_EXIT_CODE" "git-local-branch should succeed with fzf"
   local head_branch
   head_branch="$(git -C "$repo" branch --show-current)"
   assert_eq "feature/one" "$head_branch" "should checkout selected filtered branch"
 
-  run_cmd "PATH=\"/usr/bin:/bin\" \"$REPO_ROOT/git-local-branch\"" "$repo"
+  run_cmd "PATH=\"/usr/bin:/bin\" \"$REPO_ROOT/src/git-local-branch\"" "$repo"
   assert_eq "1" "$CMD_EXIT_CODE" "missing fzf should fail"
   assert_contains "$CMD_STDERR" "fzf" "missing dependency message should mention fzf"
 

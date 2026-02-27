@@ -24,8 +24,8 @@ Custom Git subcommands implemented as executable files named `git-*`.
 ## Setup
 
 1. Make scripts executable:
-   - `chmod +x git-latest git-local-branch git-merged git-last`
-2. Add this repository directory to your `PATH`.
+   - `chmod +x src/git-latest src/git-local-branch src/git-merged src/git-last`
+2. Add the `src/` directory to your `PATH`.
 
 Then you can run these as normal Git subcommands:
 

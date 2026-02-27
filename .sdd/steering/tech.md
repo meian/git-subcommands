@@ -3,6 +3,7 @@
 ## アーキテクチャ
 Git の外部サブコマンド機構（`git-<name>` という実行可能ファイルを `PATH` 上に配置）を利用する CLI ツール群です。
 各サブコマンドは Bash スクリプトとして実装し、共通処理は `lib/common.sh` に集約します。
+今後の配置方針として、ユーザー公開スクリプトは `src/` 配下に配置するルールを採用します。
 
 ## 使用技術
 ### 言語とフレームワーク
@@ -25,7 +26,7 @@ Git の外部サブコマンド機構（`git-<name>` という実行可能ファ
 - タスク分解：`/sdd-tasks`
 - 実装：`/sdd-implement`
 - テスト：`bash test/run.sh`
-- 実行権限付与：`chmod +x git-latest git-local-branch git-merged git-last`
+- 実行権限付与：`chmod +x src/git-latest src/git-local-branch src/git-merged src/git-last`
 
 ## 環境変数
 - 現時点で明示された必須環境変数はありません。
