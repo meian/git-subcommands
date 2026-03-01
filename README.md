@@ -2,6 +2,8 @@
 
 Custom Git subcommands implemented as executable files named `git-*`.
 
+日本語版: [README.ja.md](README.ja.md)
+
 ## Subcommands
 
 - `git latest <branch>`
