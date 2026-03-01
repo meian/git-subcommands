@@ -55,13 +55,9 @@ The same installation steps work regardless of your current shell (bash/zsh).
 The installer configures interactive shells by adding a managed block to `.bashrc` and `.zshrc` that loads `~/.git-subcommands.rc`.
 `~/.git-subcommands.rc` adds `~/.local/share/git-subcommands/src` to `PATH`.
 
-## Setup
+## Usage
 
-1. Make scripts executable:
-   - `chmod +x src/git-latest src/git-local-branch src/git-merged src/git-last`
-2. Add the `src/` directory to your `PATH`.
-
-Then you can run these as normal Git subcommands:
+After installation, you can run these as normal Git subcommands:
 
 - `git latest main`
 - `git local-branch feature`
