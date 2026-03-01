@@ -20,8 +20,40 @@ English version: [README.md](README.md)
 
 ## 必要要件
 
+- `bash` または `zsh`（対応する対話シェル環境）
 - `git`
 - `fzf`（`git local-branch` で必要）
+
+## インストール
+
+GitHub（デフォルトブランチ）からインストール:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/meian/git-subcommands/main/install.sh | sh
+```
+
+既存インストールを更新:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/meian/git-subcommands/main/install.sh | sh -s -- --update
+```
+
+特定ブランチをインストール:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/meian/git-subcommands/main/install.sh | sh -s -- --branch feature/my-branch
+```
+
+特定タグをインストール:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/meian/git-subcommands/main/install.sh | sh -s -- --tag v1.0.0
+```
+
+インストールコマンドは、実行中のシェル種別（bash/zsh）に関係なく同じ手順で利用できます。
+
+インストーラーは対話モード向けに `.bashrc` と `.zshrc` へ管理ブロックを追加し、`~/.git-subcommands.rc` を読み込むように設定します。
+`~/.git-subcommands.rc` では `~/.local/share/git-subcommands/src` を `PATH` に追加します。
 
 ## セットアップ
 
@@ -35,6 +67,22 @@ English version: [README.md](README.md)
 - `git local-branch feature`
 - `git merged -clean`
 - `git last -1`
+
+## アンインストール
+
+次を実行:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/meian/git-subcommands/main/uninstall.sh | sh
+```
+
+またはローカルスクリプトを実行:
+
+```bash
+./uninstall.sh
+```
+
+アンインストーラーは `.bashrc` と `.zshrc` の管理ブロックを削除し、`~/.git-subcommands.rc` も削除します。
 
 ## テスト
 

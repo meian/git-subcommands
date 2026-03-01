@@ -1,14 +1,30 @@
 # 機能概要
-READMEの日本語バージョン
+インストーラー・アンインストーラーの追加
 
 ## 背景
-GitHub Issue #2
-https://api.github.com/repos/meian/git-subcommands/issues/2
+GitHub Issue #4
+https://github.com/meian/git-subcommands/issues/4
 
 ## 要求内容（Issue原文）
-- READMEと同じ内容を日本語で記述したファイルを README.ja.md として作成する
-- 相互のファイルにリンクを貼る
-- プロジェクトレベルのcodex用のプロンプトファイルに、片方のファイルを修正する場合はそれに合わせてもう片方のファイルを更新する旨を明記する
+- ルートディレクトリにinstall.shを追加し、そのシェルを用いてインストールできるようにする
+    - 手順としてはgithubのmain上からHTTPSでダウンロードし、shにパイプで引き渡すことでインストールされるようにする
+    - ~/.local/share/git-subcommands にリポジトリをダウンロードする
+    - インストール済の場合は何も処理ない、ただし `--update` をつけると最新版に更新する
+        - ブランチの最新を取得する
+    - `--branch` でブランチを指定、 `--tag タグ名` でタグを指定してインストールする、未指定時はデフォルトブランチが対象
+        - インストール済であってもタグが異なる場合はタグが切り替わって再インストールされる
+    - ~/.git-subcommands.rc を作成し、対話モードで読み込む設定を追加する
+        - ~/.local/share/git-subcommands/src をPATHに含む処理
+        - bashとzshの対話モードが対象になる
+    - 正常終了後にsourceし直すかシェルを再起動する旨のメッセージを出力する
+- アンインストールはルートディレクトリに配置されたuninstall.shで処理される
+    - ~/.local/share/git-subcommandsの削除
+    - ~/.git-subcommands.rc の削除
+    - 対話モード用のファイルで変更した箇所を元に戻す
+        - インストールはいずれかでも両方ともクリーンアップできるようにする
+- READMEにインストール手順とアンインストール手順を追加
+    - bashとzshの対話ファイルにインストールされることを明記する
+    - 動作環境のシェルとしてbashとzshが対応していることを明記する
 
 ## スコープ
 - In Scope: Issue本文と追加回答で合意した範囲
@@ -18,7 +34,3 @@ https://api.github.com/repos/meian/git-subcommands/issues/2
 - [ ] 主要要件を満たす
 - [ ] 既存機能への影響を説明できる
 - [ ] requirements で検証可能な条件に落とし込める
-
-## 追加指示（Codex公式仕様）
-- プロジェクトレベルの `AGENTS.md` はリポジトリルート（通常は Git ルート）に配置する。
-- Codex はプロジェクトルートから現在の作業ディレクトリまで探索し、各階層で `AGENTS.override.md` を優先し、次に `AGENTS.md` を読む。

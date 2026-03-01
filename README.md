@@ -20,8 +20,40 @@ Custom Git subcommands implemented as executable files named `git-*`.
 
 ## Requirements
 
+- `bash` or `zsh` (supported interactive shell environment)
 - `git`
 - `fzf` (required for `git local-branch`)
+
+## Install
+
+Install from GitHub (default branch):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/meian/git-subcommands/main/install.sh | sh
+```
+
+Update an existing installation:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/meian/git-subcommands/main/install.sh | sh -s -- --update
+```
+
+Install a specific branch:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/meian/git-subcommands/main/install.sh | sh -s -- --branch feature/my-branch
+```
+
+Install a specific tag:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/meian/git-subcommands/main/install.sh | sh -s -- --tag v1.0.0
+```
+
+The same installation steps work regardless of your current shell (bash/zsh).
+
+The installer configures interactive shells by adding a managed block to `.bashrc` and `.zshrc` that loads `~/.git-subcommands.rc`.
+`~/.git-subcommands.rc` adds `~/.local/share/git-subcommands/src` to `PATH`.
 
 ## Setup
 
@@ -35,6 +67,22 @@ Then you can run these as normal Git subcommands:
 - `git local-branch feature`
 - `git merged -clean`
 - `git last -1`
+
+## Uninstall
+
+Run:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/meian/git-subcommands/main/uninstall.sh | sh
+```
+
+or execute the local script:
+
+```bash
+./uninstall.sh
+```
+
+The uninstaller removes the managed block from `.bashrc` and `.zshrc` and deletes `~/.git-subcommands.rc`.
 
 ## Test
 
