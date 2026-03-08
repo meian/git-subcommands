@@ -55,13 +55,9 @@ curl -fsSL https://raw.githubusercontent.com/meian/git-subcommands/main/install.
 インストーラーは対話モード向けに `.bashrc` と `.zshrc` へ管理ブロックを追加し、`~/.git-subcommands.rc` を読み込むように設定します。
 `~/.git-subcommands.rc` では `~/.local/share/git-subcommands/src` を `PATH` に追加します。
 
-## セットアップ
+## 使い方
 
-1. スクリプトに実行権限を付与:
-   - `chmod +x src/git-latest src/git-local-branch src/git-merged src/git-last`
-2. `src/` ディレクトリを `PATH` に追加。
-
-以降は通常の Git サブコマンドとして実行できます:
+インストール後は通常の Git サブコマンドとして実行できます:
 
 - `git latest main`
 - `git local-branch feature`
